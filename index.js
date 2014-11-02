@@ -122,6 +122,8 @@ app.post('/paymentreceived', function(request, response) {
 
   		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
 
+  			log("UPDATED INVOICE");
+
   			if(err != null) return;
 		  
 		  	console.log(response);
@@ -139,11 +141,11 @@ app.post('/paymentreceived', function(request, response) {
 				if(rp2.results.length < 1)
 					return;
 
-		  			console.log(rp);
-		  			console.log(rp2);
+				console.log("SENDER PUB: " + rp);
+				console.log("RECEIVER PUB: " + rp2);
 					
-				  var data = {key: "hwPvctbIxMYbahS1rQnKfQ",
-                  message: {
+				var data = {key: "hwPvctbIxMYbahS1rQnKfQ",
+                message: {
                     from_email: "dawsonbotsford@gmail.com",
                     to: [
                         {
@@ -158,7 +160,8 @@ app.post('/paymentreceived', function(request, response) {
                   }
               }
 
-		  restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+		  		restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+		  		console.log("SENT EMAIL");
 
 		  		})
 
