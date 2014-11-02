@@ -127,7 +127,7 @@ app.post('/paymentreceived', function(request, response) {
 
 		  		  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
 
-		  // 		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
+		  		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
 
 		  // 			console.log(rp);
 		  // 			console.log(rp2);
@@ -150,7 +150,7 @@ app.post('/paymentreceived', function(request, response) {
 
 		  // restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
 
-		  // 		})
+		  		})
 
 		  });
 
