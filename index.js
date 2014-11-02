@@ -114,7 +114,9 @@ app.post('/paymentreceived', function(request, response) {
  	  		console.log(response);
 
   			//response.results[0].invoice_privateKey;
- //  		//bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
+
+  			console.log("PEEEEEYYYYYYYY1````````````````");
+ 	 		bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
 
  //  		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
 	// 	  //console.log("successfully removed !");
