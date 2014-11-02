@@ -4,14 +4,17 @@ var app = express();
 var coreJs = require('./js/core.js');
 var bitcoin = require('./bitcoin.js');
 var Parse = require('node-parse-api').Parse;
+var restler = require('restler');
+
+bitcoin.sendTransaction("L1msFLvbZn64AfTVQyUVsPDNXEA3uT94FKKgscBd18cS2Qoit4ZT", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", "ms99RX1NivgoZjkyvTFmdzCtJ61sSjwWMb", 50000, function(err, response){
+	console.log(response);
+});
 
 var parse = new Parse("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "av6qlnU6r8pl2Wt78wSVmmFoxiEvZwnGMNm97S0D");
 
 app.set('port', (process.env.PORT || 5000))
 
 app.use(express.static(__dirname + '/'))
-
-//app.use(express.static(__dirname + '/css'))
 
 app.use(bodyParser.json())
 
@@ -34,7 +37,42 @@ app.post('/invoice', function(request, response) {
 	 	function(err, res) {
 
   			response.send(res);
+
 	})
+
+		  parse.findMany('_User', { publicKey: request.body.receiver_publicKey }, function(ert, rp){
+
+		  		parse.findMany('_User', { publicKey: request.body.sender_publicKey }, function(ert2, rp2) {
+
+		  			console.log(rp);
+		  			console.log(rp2);
+					
+				  var data = {key: "hwPvctbIxMYbahS1rQnKfQ",
+                  message: {
+                    from_email: "dawsonbotsford@gmail.com",
+                    to: [
+                        {
+                          email: rp2.results[0].username,
+                          name: rp2.results[0].fullName,
+                          type: "to"
+                        }
+                      ],
+                    autotext: 'true',
+                    subject: rp.results[0].fullName + ' sent you an invoice!',
+                    html: rp.results[0].fullName + ' has sent you an invoice with bit split. You need to pay ' + request.body.amount + ' satoshi to ' + keys.public_key
+                  }
+              }
+
+              console.log(data);
+              console.log(data.message.to[0]);
+
+		  restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+
+		  		})
+
+		  });
+
+//restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
 
 });
 
@@ -42,12 +80,90 @@ app.post('/paymentreceived', function(request, response) {
 
 
 	// get transaction
-	var inputs = request.body.payload.input_addresses;
-	var outputs = request.body.payload.output_addresses;
+	var input = request.body.payload.transaction.inputs[0].addresses[0];
+
+	var outputs = [];
+	//var outputsToValues = {};
+
+	for(var i = 0; i < request.body.payload.transaction.outputs.length; i++)
+	{
+		for(var j = 0; j < request.body.payload.transaction.outputs[i].addresses.length; j++)
+		{
+			var outputAddress = request.body.payload.transaction.outputs[i].addresses[j];
+			if(outputAddress == input)
+				continue;
+
+			outputs.push(outputAddress);
+
+			//if(outputsToValues.outputAddress
+		}
+	}
+
+	var index = outputs.indexOf(input);
+
+	if(index > -1)
+		outputs.splice(index, 1);
+
+	var output = outputs[0];
+
+	// query parse to find the associated invoice
+	parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
+  		
+  		// send you an email notification
+  		console.log(response);
+
+  		bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
+
+  		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
+		  //console.log("successfully removed !");
+		  console.log(response);
+		  //console.log(input);
+		  //console.log(output);
+
+		  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
+
+		  		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
+
+		  			console.log(rp);
+		  			console.log(rp2);
+					
+				  var data = {key: "hwPvctbIxMYbahS1rQnKfQ",
+                  message: {
+                    from_email: "dawsonbotsford@gmail.com",
+                    to: [
+                        {
+                          email: rp.results[0].username,
+                          name: rp.results[0].fullName,
+                          type: "to"
+                        }
+                      ],
+                    autotext: 'true',
+                    subject: rp2.results[0].fullName + ' paid you !',
+                    html: rp2.results[0].fullName + ' Paid you !'
+                  }
+              }
+
+		  restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+
+		  		})
+
+		  });
+
+
+		});
+
+	});
+
+	//request.body.payload.transaction.input_addresses;
+	//var outputs = request.body.payload.output_addresses;
 
 	response.send("{'success':true}");
 
-})
+});
+
+app.get('/keys', function(request, response) {
+	response.send(bitcoin.generateKeys());
+});
 
 app.post('/split', function(request, response) {
     response.send(response.send(coreJs.calculate(request.body)));
