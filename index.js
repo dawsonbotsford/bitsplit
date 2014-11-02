@@ -6,9 +6,9 @@ var bitcoin = require('./bitcoin.js');
 var Parse = require('node-parse-api').Parse;
 var restler = require('restler');
 
-// bitcoin.sendTransaction("L1msFLvbZn64AfTVQyUVsPDNXEA3uT94FKKgscBd18cS2Qoit4ZT", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", "mreeDW9xqyTPC6AmsFzuGLP3A33Yj4YhAp", 50000, function(err, response){
-// 	console.log(response);
-// });
+bitcoin.sendTransaction("L1msFLvbZn64AfTVQyUVsPDNXEA3uT94FKKgscBd18cS2Qoit4ZT", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", "mreeDW9xqyTPC6AmsFzuGLP3A33Yj4YhAp", 50000, function(err, response){
+	console.log(response);
+});
 
 var parse = new Parse("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "av6qlnU6r8pl2Wt78wSVmmFoxiEvZwnGMNm97S0D");
 
@@ -88,6 +88,7 @@ app.post('/paymentreceived', function(request, response) {
 
 	for(var i = 0; i < request.body.payload.transaction.outputs.length; i++)
 	{
+		console.log(request.body.payload.transaction.outputs[i].addresses);
 		for(var j = 0; j < request.body.payload.transaction.outputs[i].addresses.length; j++)
 		{
 			var outputAddress = request.body.payload.transaction.outputs[i].addresses[j];
@@ -106,8 +107,6 @@ app.post('/paymentreceived', function(request, response) {
 
 	var output = outputs[0];
 
-	console.log(output);
-	console.log(input);
 	parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
   		
   			if(err != null) return;
@@ -117,7 +116,7 @@ app.post('/paymentreceived', function(request, response) {
 
   			//response.results[0].invoice_privateKey;
 
-  			console.log("PEEEEEYYYYYYYY1````````````````");
+  			console.log("=============== FOUND INVOICE");
  	 		bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
 
   		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
@@ -125,9 +124,6 @@ app.post('/paymentreceived', function(request, response) {
   			log("UPDATED INVOICE");
 
   			if(err != null) return;
-		  
-		  	console.log(response);
-
 
 			parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp) {
 
@@ -159,6 +155,9 @@ app.post('/paymentreceived', function(request, response) {
                     html: rp2.results[0].fullName + ' Paid you !'
                   }
               }
+
+              	console.log(data);
+              	console.log(data.message.to[0]);
 
 		  		restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
 		  		console.log("SENT EMAIL");
