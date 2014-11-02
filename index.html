@@ -4,16 +4,44 @@
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/custom.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:700,400">
-    <script src="./js/url_encode.js" language="javascript" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="./js/frontend.js" language="javascript" type="text/javascript"></script>
+    <script src="./js/bootstrap.min.js" language="javascript" type="text/javascript"></script>
 </head>
 <body>
     <div class="container">
         <h1>BitSplit</h1>
         <p> Manage your tab and resolve payments like a champ </p>
         <form class="form-inline">
-                <input type="button" name="newuserbutton" class="btn btn-default" value="New Account" onClick="return new_page('create.html')"/>
-                <input type="button" name="loginbutton" class="btn btn-default" value="Login" onClick="return new_page('html/login.html')"/>
-        </form>
-        </a>
-    </div>
-</body>
+
+        <!-- Small modal -->
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal1">Create Account</button>
+
+        <div id= "modal1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <input type="text" name="email" class="form-control" placeholder="email"/>
+              <input type="text" name="pubkey" class="form-control" placeholder="public bitcoin wallet key"/>
+              <input type="password" name="password" class="form-control" placeholder="password"/>
+              <input type = "submit" name="Create" class="btn btn-default" value="Create"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Small modal -->
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal2">Login</button>
+
+        <div id = "modal2" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <input type="text" name="email" class="form-control" placeholder="email"/>
+              <input type="password" name="password" class="form-control" placeholder="password"/>
+              <input type = "submit" name="loginbutton" class="btn btn-default" value="Login"/>
+            </div>
+          </div>
+          </div>
+                </form>
+                </a>
+            </div>
+        </body>
+        </div>
