@@ -96,18 +96,18 @@ app.post('/paymentreceived', function(request, response) {
 
 			outputs.push(outputAddress);
 
-			//if(outputsToValues.outputAddress
 		}
 	}
 
-	// var index = outputs.indexOf(input);
+	var index = outputs.indexOf(input);
 
-	// if(index > -1)
-	// 	outputs.splice(index, 1);
+	if(index > -1)
+		outputs.splice(index, 1);
 
-	// var output = outputs[0];
+	var output = outputs[0];
 
-	// // query parse to find the associated invoice
+	console.log(output);
+	console.log(input);
 	// parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
   		
  //  		// send you an email notification
