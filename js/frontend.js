@@ -8,11 +8,12 @@ function new_page(url)
 }
 function build_owe_json(objects){
 
-   var jsonret = "{";
-   $.get("../test", function (data) {
-     jsonret += "[pubkey: " + data + "\npaid: 99999], ";
-   });
-
+  //  var jsonret = "{";
+  //  $.get("../test", function (data) {
+  //    jsonret += "[pubkey: " + data + "\npaid: 99999], ";
+  //  });
+  
+  var jsonret = "{";
   $('#friendlist .btn-info').each(function() {
     jsonret += "[ pubkey: " + $(this).attr('data-pubkey') +"\npaid: 0],";
   });
