@@ -1,0 +1,41 @@
+<!doctype html>
+<head>
+    <title>BitSplit</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:700,400">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<script>
+  
+</script>
+<body>
+    <div class="container">
+        <h2>How much?</h2>
+        <form class="form-inline">
+          <script>
+          var obj = [{
+            name: "dawson",
+            email: "daws@me",
+            pubkey: "dawskey1" 
+          },{
+            name: "peyman",
+            email: "peyman@me",
+            pubkey: "peymankey2" 
+          }];
+          $(document).ready(function() {
+              $.each(obj, function(i, item){
+                $("p").append(item.name + "\n");
+              });
+
+          });
+          </script>
+                <input type="submit" name="currency_type" class="btn btn-default" value="USD" />
+                <input type="text" name="amount_field" class="form-control" placeholder="amount"/>
+                <input type="button" name="loginbutton" class="btn btn-default" value="With whom?" onClick="return encode('./split.html', this.form)"/>
+                <p> </p>
+
+        </form>
+        </a>
+    </div>
+</body>
