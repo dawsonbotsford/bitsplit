@@ -8,7 +8,7 @@ function new_page(url)
 }
 function build_owe_json(objects){
 
-   $.get("./test", function (data) {
+   $.get("http://localhost:5000/test", function (data) {
       alert(data);
    });
 
