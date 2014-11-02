@@ -1,3 +1,5 @@
+exports.calculate = calculate;
+
 var S = require('./splitLogic/Splitter.js');
 var U = require('./splitLogic/User.js');
 
@@ -26,11 +28,12 @@ function calculate(data) {
 	}
 	var split = new S.Splitter(users);
 	txns = split.simulate(users);
+	return txns;
 }
 
-var dummyData = [
-	{ id: "001", paid:"100" },
-	{ id:"002", paid: "200" }];
-
-
-calculate(dummyData);
+// var dummyData = [
+// 	{ id: "001", paid:"100" },
+// 	{ id:"002", paid: "200" }];
+//
+//
+// calculate(dummyData);
