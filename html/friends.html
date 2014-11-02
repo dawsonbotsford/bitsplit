@@ -16,6 +16,7 @@
   
 </script>
 <body>
+Currently logged in as: <div id = "current_user"></div>
     <div class="container">
         <h2>How much?</h2>
         <form class="form-inline">
@@ -23,6 +24,8 @@
           getAccounts(function(err, response){
              var obj = response;
             $(document).ready(function() {
+              alert(getCurrentUser()); 
+              //$.("#current_user").append(getCurrentUser());
               $.each(obj, function(i, item){
                 $("#friendlist").append("<input padding: type=\"button\" class=\"btn btn-default\" data-pubkey = " + item.publicKey + " value=" + item.fullName + "><br>");
               });
@@ -39,7 +42,7 @@
           </script>
                 <input type="submit" name="currency_type" class="btn btn-default" value="USD" />
                 <input type="text" name="amount_field" class="form-control" placeholder="amount"/>
-                <input id="loginbutton" type="button" name="loginbutton" class="btn btn-default" value="Let's BitSplit"/>
+                <input id="loginbutton" type="button" name="loginbutton" class="btn btn-default" value="BitSplit"/>
                 <p id= "friendlist"> </p>
 
         </form>
