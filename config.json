@@ -1,0 +1,13 @@
+{
+	"api_key": "",
+	"api_secret": "",
+	"useTestnet":true,
+	"user1": {
+		"private_key": "",
+		"public_key": ""
+	},
+	"user2": {
+		"private_key": "",
+		"public_key": ""
+	}
+}
