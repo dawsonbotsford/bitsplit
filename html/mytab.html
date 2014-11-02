@@ -1,0 +1,78 @@
+<!doctype html>
+<head>
+    <title>BitSplit</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:700,400">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../js/frontend.js"></script>
+    
+</head>
+<script>
+  
+</script>
+<body>
+    <div class="container">
+        <h2>Who owes you?</h2>
+        <form class="form-inline">
+          <script>
+          var obj = [{
+            name: "dawson",
+            email: "daws@me",
+            pubkey: "dawskey1" 
+          },{
+            name: "peyman",
+            email: "peyman@me",
+            pubkey: "peymankey" 
+          },{
+            name: "brian",
+            email: "brian@me",
+            pubkey: "briankey" 
+          },{
+            name: "Grant",
+            email: "grant@me",
+            pubkey: "grantkey" 
+          }];
+          $(document).ready(function() {
+              $.each(obj, function(i, item){
+                $("#friendlist").append("<input padding: type=\"button\" class=\"btn btn-default\" data-pubkey = " + item.pubkey + " value=" + item.name + "><br>");
+              });
+            $("#settle").click(function() {
+              $.ajax({
+                type: "POST",
+                url: "https://mandrillapp.com/api/1.0/messages/send.json",
+                data: {
+                  'key': "hwPvctbIxMYbahS1rQnKfQ",
+                  'message': {
+                    'from_email': "dawsonbotsford@gmail.com",
+                    'to': [
+                        {
+                          'email': "pey.mortazavi@gmail.com",
+                          'name': "Peyman",
+                          'type': "to"
+                        },
+                        {
+                          'email': "brian.newsom@colorado.edu",
+                          'name': "Brian",
+                          'type': "to"
+                        }
+                      ],
+                    'autotext': 'true',
+                    'subject': 'TEST automated Mandrill!',
+                    'html': 'You are a part of a test! Consider yourself a guinie pig!'
+                  }
+                }
+               }).done(function(response) {
+                 console.log(response); // if you're into that sorta thing
+               });
+            }); 
+               });
+
+          </script>
+                <p id= "friendlist"> </p>
+                <input id="settle" type="button" name="loginbutton" class="btn btn-default" value="Settle the tab!"/>
+
+        </form>
+        </a>
+    </div>
+</body>
