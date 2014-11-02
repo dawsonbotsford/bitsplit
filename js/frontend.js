@@ -7,6 +7,11 @@ function new_page(url)
     window.location.href = url;
 }
 function build_owe_json(objects){
+
+   $.get("http://localhost:5000/test", function (data) {
+      alert(data);
+   }); 
+
  var jsonret = "{";
   $('#friendlist .btn-info').each(function() {
     jsonret += "[ pubkey: " + $(this).attr('data-pubkey') +"\npaid: 0],";
