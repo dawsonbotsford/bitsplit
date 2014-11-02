@@ -21,3 +21,8 @@ body {
   margin-top: 50px;
 
 }
+.modal-content{
+  margin-top: 250px;
+  background-color: #a9a9a9;
+  text-align: left;
+}
