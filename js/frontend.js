@@ -33,7 +33,7 @@ function prep_invoice(objects, total){
   contentType:"application/json; charset=utf-8",
   dataType:"json",
   success: function(){
-    alert("Success !");
+    window.location.href = "./success.html";
   }});
 
   //alert("Each person owes" + owedper + " USD");
