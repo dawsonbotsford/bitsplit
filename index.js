@@ -6,7 +6,7 @@ var bitcoin = require('./bitcoin.js');
 var Parse = require('node-parse-api').Parse;
 var restler = require('restler');
 
-bitcoin.sendTransaction("L1msFLvbZn64AfTVQyUVsPDNXEA3uT94FKKgscBd18cS2Qoit4ZT", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", "mreeDW9xqyTPC6AmsFzuGLP3A33Yj4YhAp", 50000, function(err, response){
+bitcoin.sendTransaction("L1msFLvbZn64AfTVQyUVsPDNXEA3uT94FKKgscBd18cS2Qoit4ZT", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", "muSFkt9KNiT6KZ29C4nKKpYj8sABgHt9zD", 70000, function(err, response){
 	console.log(response);
 });
 
@@ -121,7 +121,7 @@ app.post('/paymentreceived', function(request, response) {
 
   		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
 
-  			log("UPDATED INVOICE");
+  			console.log("UPDATED INVOICE");
 
   			if(err != null) return;
 
