@@ -1,1 +1,1 @@
-<?php include_once("auth/home.html"); ?>
+<?php include_once("auth/index.html"); ?>
