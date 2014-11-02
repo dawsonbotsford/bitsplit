@@ -56,13 +56,20 @@ function login(username, password, callback)
 
 function getCurrentUser()
 {
-	var currentUser =
-	{
-		"id": Parse.User.current().id,
-		"fullName": Parse.User.current().attributes.fullName,
-		"email": Parse.User.current().attributes.username,
-		"publicKey": Parse.User.current().attributes.publicKey
-	};
+  var currentUser = {
+    "id": 1,
+    "fullName": "Brian Newsom",
+    "email" : "Brian.Newsom@Colorado.edu",
+    "publicKey" : "FILLMEIN"
+  }
+  
+	// var currentUser =
+	// {
+	// 	"id": Parse.User.current().id,
+	// 	"fullName": Parse.User.current().attributes.fullName,
+	// 	"email": Parse.User.current().attributes.username,
+	// 	"publicKey": Parse.User.current().attributes.publicKey
+	// };
 
 	return currentUser;
 }
