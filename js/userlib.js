@@ -57,9 +57,9 @@ function login(username, password, callback)
 function getCurrentUser()
 {
   var currentUser = {
-    "fullName": "Brian Newsom",
-    "publicKey" : "n46pZct5uLaGN4Wi8UMrzYrEFnDzCJCy5X",
-    "email" : "Brian.Newsom@Colorado.edu",
+    "fullName": "Dawson Botsford",
+    "publicKey" : "mhurFvrky29ib6VshzZk6V9tUFeBHr5Sh3",
+    "email" : "dawson.botsford@colorado.edu",
     "id": 1
   }
 
