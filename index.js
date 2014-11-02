@@ -19,7 +19,12 @@ app.post('/submit', function(request, response) {
 
 app.post('/split', function(request, response) {
 	console.log(request.body);
-    response.send(coreJs.calculate(request.body));
+    //response.send(coreJs.calculate(request.body));
+    response.send("saw");
+})
+
+app.get('/test', function(request, response){
+	response.send("{'name':'PEYMAN'}");
 })
 
 app.listen(app.get('port'), function() {
