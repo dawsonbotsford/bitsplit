@@ -5,6 +5,8 @@
     <link href="../css/custom.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:700,400">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../js/frontend.js"></script>
+    
 </head>
 <script>
   
@@ -21,19 +23,34 @@
           },{
             name: "peyman",
             email: "peyman@me",
-            pubkey: "peymankey2" 
+            pubkey: "peymankey" 
+          },{
+            name: "brian",
+            email: "brian@me",
+            pubkey: "briankey" 
+          },{
+            name: "Grant",
+            email: "grant@me",
+            pubkey: "grantkey" 
           }];
           $(document).ready(function() {
               $.each(obj, function(i, item){
-                $("p").append(item.name + "\n");
+                $("#friendlist").append("<input padding: type=\"button\" class=\"btn btn-default\" data-pubkey = " + item.pubkey + " value=" + item.name + "><br>");
               });
-
+                $("#friendlist .btn").click(function() {
+                  $(this).toggleClass("btn-default");
+                  $(this).toggleClass("btn-info");
+                });
+                
+                $("#loginbutton").click(function() {
+                  build_owe_json(obj);
+                }); 
           });
           </script>
                 <input type="submit" name="currency_type" class="btn btn-default" value="USD" />
                 <input type="text" name="amount_field" class="form-control" placeholder="amount"/>
-                <input type="button" name="loginbutton" class="btn btn-default" value="With whom?" onClick="return encode('./split.html', this.form)"/>
-                <p> </p>
+                <input id="loginbutton" type="button" name="loginbutton" class="btn btn-default" value="Let's BitSplit"/>
+                <p id= "friendlist"> </p>
 
         </form>
         </a>

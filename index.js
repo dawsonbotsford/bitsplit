@@ -5,7 +5,7 @@ var coreJs = require('./js/core.js');
 
 
 app.set('port', (process.env.PORT || 5000))
-//
+
 
 app.use(express.static(__dirname + '/auth'))
 
@@ -18,9 +18,7 @@ app.post('/submit', function(request, response) {
 });
 
 app.post('/split', function(request, response) {
-	console.log(request.body);
-    //response.send(coreJs.calculate(request.body));
-    response.send("saw");
+    response.send(response.send(coreJs.calculate(request.body)));
 })
 
 app.get('/test', function(request, response){
