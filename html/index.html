@@ -1,20 +1,19 @@
-<doctype html>
+<!doctype html>
 <head>
     <title>BitSplit</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:700,400">
-    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <script src="../js/url_encode.js" language="javascript" type="text/javascript"></script>
 </head>
 <body>
     <div class="container">
         <h1>BitSplit</h1>
-        <p>Split all the things in that new(ish) thing we like to call Bitcoin</p>
-        <form action="./split.html" method="post" role="form" class="form-inline">
-                <input type="text" name="username" class="form-control" placeholder="username"/>
-                <input type="password" name="domain" class="form-control" placeholder="password"/>
-                <input type="submit" name="loginbutton" class="btn btn-default" value="Let's Split" />
+        <p> Manage your tab and resolve payments like a champ </p>
+        <form class="form-inline">
+                <input type="button" name="newuserbutton" class="btn btn-default" value="New Account" onClick="return new_page('create.html')"/>
+                <input type="button" name="loginbutton" class="btn btn-default" value="Login" onClick="return new_page('login.html')"/>
         </form>
-        <a target="_blank" href="https://github.com/dawsonbotsford/bitsplit">
         </a>
     </div>
 </body>
