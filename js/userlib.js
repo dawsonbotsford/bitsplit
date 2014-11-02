@@ -51,7 +51,6 @@ function login(username, password, callback)
 	  error: function(user, error) {
 	    callback(error, user);
 	  }
-    event.preventDefault();
 	});
 }
 
