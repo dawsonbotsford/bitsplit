@@ -107,7 +107,7 @@ app.post('/paymentreceived', function(request, response) {
 
 	var output = outputs[0];
 
-	parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
+	parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input, isPaid: false }, function (err, response) {
   		
   			if(err != null) return;
   			if(response.results.length <1) return;
