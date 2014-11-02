@@ -125,7 +125,7 @@ app.post('/paymentreceived', function(request, response) {
 		  //console.log(output);
 
 
-		  // 		  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
+		  		  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
 
 		  // 		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
 
@@ -152,7 +152,7 @@ app.post('/paymentreceived', function(request, response) {
 
 		  // 		})
 
-		  // });
+		  });
 
 		  		  // END OF UPDATE
 		});
