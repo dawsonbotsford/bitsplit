@@ -124,36 +124,37 @@ app.post('/paymentreceived', function(request, response) {
 		  //console.log(input);
 		  //console.log(output);
 
-		  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
 
-		  		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
+		  // 		  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
 
-		  			console.log(rp);
-		  			console.log(rp2);
+		  // 		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
+
+		  // 			console.log(rp);
+		  // 			console.log(rp2);
 					
-				  var data = {key: "hwPvctbIxMYbahS1rQnKfQ",
-                  message: {
-                    from_email: "dawsonbotsford@gmail.com",
-                    to: [
-                        {
-                          email: rp.results[0].username,
-                          name: rp.results[0].fullName,
-                          type: "to"
-                        }
-                      ],
-                    autotext: 'true',
-                    subject: rp2.results[0].fullName + ' paid you !',
-                    html: rp2.results[0].fullName + ' Paid you !'
-                  }
-              }
+				//   var data = {key: "hwPvctbIxMYbahS1rQnKfQ",
+    //               message: {
+    //                 from_email: "dawsonbotsford@gmail.com",
+    //                 to: [
+    //                     {
+    //                       email: rp.results[0].username,
+    //                       name: rp.results[0].fullName,
+    //                       type: "to"
+    //                     }
+    //                   ],
+    //                 autotext: 'true',
+    //                 subject: rp2.results[0].fullName + ' paid you !',
+    //                 html: rp2.results[0].fullName + ' Paid you !'
+    //               }
+    //           }
 
-		  restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+		  // restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
 
-		  		})
+		  // 		})
 
-		  });
+		  // });
 
-
+		  		  // END OF UPDATE
 		});
 
 	});
