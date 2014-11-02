@@ -4,7 +4,7 @@ var app = express();
 var coreJs = require('./js/core.js');
 var bitcoin = require('./bitcoin.js');
 var Parse = require('node-parse-api').Parse;
-var restler = require('restler');
+//var restler = require('restler');
 
 // bitcoin.sendTransaction("L1msFLvbZn64AfTVQyUVsPDNXEA3uT94FKKgscBd18cS2Qoit4ZT", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", "mreeDW9xqyTPC6AmsFzuGLP3A33Yj4YhAp", 50000, function(err, response){
 // 	console.log(response);
@@ -66,13 +66,13 @@ app.post('/invoice', function(request, response) {
               console.log(data);
               console.log(data.message.to[0]);
 
-		  restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+		  //restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
 
 		  		})
 
 		  });
 
-//restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+
 
 });
 
@@ -151,7 +151,7 @@ app.post('/paymentreceived', function(request, response) {
                   }
               }
 
-		  restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+		  //restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
 
 		  		})
 
