@@ -6,9 +6,9 @@ var bitcoin = require('./bitcoin.js');
 var Parse = require('node-parse-api').Parse;
 var restler = require('restler');
 
-bitcoin.sendTransaction("L1msFLvbZn64AfTVQyUVsPDNXEA3uT94FKKgscBd18cS2Qoit4ZT", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", "ms99RX1NivgoZjkyvTFmdzCtJ61sSjwWMb", 50000, function(err, response){
-	console.log(response);
-});
+// bitcoin.sendTransaction("L1msFLvbZn64AfTVQyUVsPDNXEA3uT94FKKgscBd18cS2Qoit4ZT", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", "mreeDW9xqyTPC6AmsFzuGLP3A33Yj4YhAp", 50000, function(err, response){
+// 	console.log(response);
+// });
 
 var parse = new Parse("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "av6qlnU6r8pl2Wt78wSVmmFoxiEvZwnGMNm97S0D");
 
@@ -78,6 +78,10 @@ app.post('/invoice', function(request, response) {
 
 app.post('/paymentreceived', function(request, response) {
 
+	try
+	{
+
+		
 
 	// get transaction
 	var input = request.body.payload.transaction.inputs[0].addresses[0];
@@ -112,11 +116,14 @@ app.post('/paymentreceived', function(request, response) {
   		// send you an email notification
   		console.log(response);
 
+  		response.results[0].invoice_privateKey
+  		console.log("A0")
   		bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
-
+  		console.log("A1")
   		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
 		  //console.log("successfully removed !");
 		  console.log(response);
+		  console.log("A2")
 		  //console.log(input);
 		  //console.log(output);
 
@@ -158,6 +165,12 @@ app.post('/paymentreceived', function(request, response) {
 	//var outputs = request.body.payload.output_addresses;
 
 	response.send("{'success':true}");
+
+	}
+	catch(err)
+	{
+		response.send("{'success':true}");
+	}
 
 });
 
