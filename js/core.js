@@ -1,4 +1,5 @@
-
+var S = require('./splitLogic/Splitter.js');
+var U = require('./splitLogic/User.js');
 
 // array of { fullName: <str>, id: <str> }
 function getUsers(callback)
@@ -18,6 +19,18 @@ function getCurrentUser()
 	return dummyData;
 }
 
-function calculate() {
-	
+function calculate(data) {
+	var users = [];
+	for (var i = 0; i < data.length ; i++){
+		users.push(new U.User(data[i].id, parseInt(data[i].paid)));
+	}
+	var split = new S.Splitter(users);
+	txns = split.simulate(users);
 }
+
+var dummyData = [
+	{ id: "001", paid:"100" },
+	{ id:"002", paid: "200" }];
+
+
+calculate(dummyData);

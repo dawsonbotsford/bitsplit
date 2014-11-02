@@ -53,8 +53,8 @@ function Splitter(users) {
 				var begPtr = 0;
 				var endPtr = users.length - 1;
 	  		// users.length is the theoretical limit of the transactions needed
-				var i = 0;
-				while(begPtr < endPtr && i < 20) {
+				var allTransactions = [];
+				while(begPtr < endPtr) {
 					if (Math.abs(users[begPtr].diff)  < tolerance) {
 						begPtr += 1;
 					}
@@ -66,12 +66,13 @@ function Splitter(users) {
 						var begDiff = Math.abs(users[begPtr].diff);
 						var endDiff = Math.abs(users[endPtr].diff);
 						var trans = new T.Transaction(users[begPtr], users[endPtr], (begDiff < endDiff) ? begDiff : endDiff );
+						allTransactions.push({"userOne" : trans.userOne.id, "userTwo" : trans.userTwo.id, "txnValue" : trans.value});
 						var ret = trans.simulate();
 						users[begPtr] = ret[0];
 						users[endPtr] = ret[1];
 					}
 				}
-				return users;
+				return [users, allTransactions];
 			}
 
 			this.simulate = function(users) {
@@ -80,9 +81,12 @@ function Splitter(users) {
 				//print(users);
 				users = sortByDiff(users);
 				//print(users);
-				users = split(users);
+				var ret = split(users);
+				users = ret[0];
+				allTransactions = ret[1];
 				//print(users);
-				return users;
+				console.log(allTransactions);
+				return allTransactions;
 				// print ();
 
 			}
