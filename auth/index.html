@@ -69,9 +69,10 @@
       success: function(user) {
       if (!user.existed()) {
         alert("User signed up and logged in through Facebook!");
-        var facebookInfo = getFacebookProfileInfo();
-        console.log("FIRST NAME": facebookInfo.firstName);
-        console.log("LAST NAME": facebookInfo.lastName);
+        getFacebookProfileInfo(function(facebookInfo){
+          console.log("FIRST NAME": facebookInfo.firstName);
+          console.log("LAST NAME": facebookInfo.lastName);
+        });
       } else {
         alert("User logged in through Facebook!");
       }
