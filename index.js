@@ -80,9 +80,12 @@ app.post('/paymentreceived', function(request, response) {
 
 
 	// get transaction
+	console.log("A-1");
 	var input = request.body.payload.transaction.inputs[0].addresses[0];
+	console.log("A-2");
 
 	var outputs = [];
+	console.log("A-3");
 	//var outputsToValues = {};
 
 	for(var i = 0; i < request.body.payload.transaction.outputs.length; i++)
@@ -98,6 +101,7 @@ app.post('/paymentreceived', function(request, response) {
 			//if(outputsToValues.outputAddress
 		}
 	}
+	console.log("A-FOR-LOOP");
 
 	var index = outputs.indexOf(input);
 
@@ -105,6 +109,8 @@ app.post('/paymentreceived', function(request, response) {
 		outputs.splice(index, 1);
 
 	var output = outputs[0];
+
+	console.log("A-FOR-LOOP-1");
 
 	// query parse to find the associated invoice
 	parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
@@ -125,6 +131,7 @@ app.post('/paymentreceived', function(request, response) {
 
 		  		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
 
+		  			console.log("SENDING EMAIL");
 		  			console.log(rp);
 		  			console.log(rp2);
 					
