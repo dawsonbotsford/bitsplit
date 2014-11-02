@@ -38,13 +38,13 @@
                 });
 
                 $("#loginbutton").click(function() {
-                  build_owe_json(obj);
+                  prep_invoice(obj, document.getElementById('totalpay').value);
                 });
             });
           });
           </script>
-                <input type="submit" name="currency_type" class="btn btn-default" value="USD" />
-                <input type="text" name="amount_field" class="form-control" placeholder="amount"/>
+                <input type="submit" name="currency_type" class="btn btn-default" value="BTC" />
+                <input id = "totalpay" type="text" name="amount_field" class="form-control" placeholder="amount"/>
                 <input id="loginbutton" type="button" name="loginbutton" class="btn btn-default" value="BitSplit"/>
                 <p id= "friendlist"> </p>
 

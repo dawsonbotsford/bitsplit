@@ -57,10 +57,10 @@ function login(username, password, callback)
 function getCurrentUser()
 {
   var currentUser = {
-    "id": 1,
-    "fullName": "Brian",
+    "fullName": "Brian Newsom",
+    "publicKey" : "n46pZct5uLaGN4Wi8UMrzYrEFnDzCJCy5X",
     "email" : "Brian.Newsom@Colorado.edu",
-    "publicKey" : "FILLMEIN"
+    "id": 1
   }
 
 	// var currentUser =
