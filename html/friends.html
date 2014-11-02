@@ -28,7 +28,7 @@
               //$.("#current_user").append(getCurrentUser());
               $('#current_user').append("Currently logged in as: " + getCurrentUser().fullName);
               $.each(obj, function(i, item){
-                if(obj.fullName != getCurrentUser().fullName){
+                if(item.publicKey != getCurrentUser().publicKey){
                   $("#friendlist").append("<input padding: type=\"button\" class=\"btn btn-default\" data-pubkey = " + item.publicKey + " value=" + item.fullName + "><br>");
               }
               });
