@@ -31,11 +31,11 @@
         <div id= "modal1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
-              <input id = "newname" type="text" name="name" class="form-control" placeholder="Full name"/>
-              <input id = "newemail" type="text" name="email" class="form-control" placeholder="email address"/>
-              <input id = "newpassword" type="password" name="password" class="form-control" placeholder="password"/>
-              <input id = "newpubkey" type="text" name="pubkey" class="form-control" placeholder="public bitcoin wallet key"/>
-              <input id = "create_new" type = "submit" name="Create" class="btn btn-default" value="Create"/>
+              <input id = "newname" type="text" name="name" class="form-control" placeholder="Full Name"/>
+              <input id = "newemail" type="text" name="email" class="form-control" placeholder="Email Address"/>
+              <input id = "newpassword" type="password" name="password" class="form-control" placeholder="Password"/>
+              <input id = "newpubkey" type="text" name="pubkey" class="form-control" placeholder="Public Bitcoin Key"/>
+              <input id = "create_new" class="btn btn-default" type = "submit" name="Create" value="Create"/>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
               new_page("./html/friends.html");
             }
             else{
-              alert("error: " + err);
+              alert("Please re-enter your credentials");
             }
           });
         });
