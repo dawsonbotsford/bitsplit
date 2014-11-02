@@ -1,3 +1,6 @@
+exports.generateKeys = generateKeys
+exports.sendTransaction = sendTransaction
+
 var fs = require('fs');
 var chain = require('chain-node');
 var bitcoin = require('bitcoinjs-lib');
@@ -51,8 +54,6 @@ function sendTransaction(senderPrivateKey, senderAddress, receiverAddress, amoun
 			console.log(i + ": " + resp[i].value);
 
 			txn.addInput(resp[i].transaction_hash, resp[i].output_index);
-
-			// txn.sign(i, key);
 
 			if((totalInputAmount - transactionFee) >= amount)
 				break;

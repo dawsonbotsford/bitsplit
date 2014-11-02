@@ -40,25 +40,34 @@
   </div>
   <script type="text/javascript" src="facebooklib.js"></script>
   <script type="text/javascript" src="userlib.js"></script>
+  <script type="text/javascript" src="invoicelib.js"></script>
   <script type="text/javascript">
 
     Parse.initialize("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "mwwZOPMNh8vgZFTqfr6koLzbU8DtT5xhydECDiDv");
 
-    // var user = { fullName: "Brian Newsom", email: "brian.newsom@gmail.com", password: "1231456", publicKey: "mxFJxinasSoswgSq25vLC2Fqchuv3Qqh28" };
-    // createAccount(user, function(err, user){});
+    // login("pey.mortazavi@gmail.com", "123456", function(a,b){});
+
+
+
+    // getAllInvoicesForCurrentUser(function(e, a){console.log(a)});
+
+    // getInvoice("wad6eqx9Y5", function(e, a) {console.log(a)});
+
+    var user = { fullName: "a", email: "a.a@a.com", password: "1", publicKey: "s" };
+    createAccount(user, function(err, user){});
 
     // getAccounts(function(error, accounts){
     //   console.log(accounts[0]);
     //   console.log(accounts[1]);
     // });
 
-    login("pey.mortazavi@gmail.com", "123456", function(error, user){
-      //console.log(Parse.User.current());
-    });
+    // login("pey.mortazavi@gmail.com", "123456", function(error, user){
+    //   //console.log(Parse.User.current());
+    // });
 
-    var a = getCurrentUser();
+    // var a = getCurrentUser();
 
-    console.log(a);
+    // console.log(a);
 
     // function signUp(name, email) = {
     //   var user = new Parse.User();
