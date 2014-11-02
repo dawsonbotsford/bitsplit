@@ -7,14 +7,17 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="./js/frontend.js" language="javascript" type="text/javascript"></script>
     <script src="./js/bootstrap.min.js" language="javascript" type="text/javascript"></script>
-    <script src="./js/userlib.js" language="javascript" type="text/javascript"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.1.min.js"></script>
-    <script> 
-  Parse.initialize("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "mwwZOPMNh8vgZFTqfr6koLzbU8DtT5xhydECDiDv");
-    </script> 
+    <script type="text/javascript" src="./js/userlib.js"></script>
+
 </head>
 
+
 <body>
+    <script type="text/javascript">
+    Parse.initialize("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "mwwZOPMNh8vgZFTqfr6koLzbU8DtT5xhydECDiDv");
+    </script>
     <div class="container">
         <h1>BitSplit</h1>
         <p> Manage your tab and resolve payments like a champ </p>
@@ -43,16 +46,37 @@
             <div class="modal-content">
               <input type="text" name="email" class="form-control" placeholder="email"/>
               <input type="password" name="password" class="form-control" placeholder="password"/>
-              <input type = "submit" name="loginbutton" class="btn btn-default" value="Login"/>
+              <input type = "login_new" name="loginbutton" class="btn btn-default" value="Login"/>
             </div>
           </div>
           </div>
         <script>
-        $('#create_new').click(function() {
-          var user = { fullName: "document.getElementById('newname')"}; 
-          alert(user);
+        $('#create_new').click(function(event) {
+          var user = {
+            fullName: document.getElementById('newname').value,
+            publicKey: document.getElementById('newpubkey').value,
+            email: document.getElementById('newemail').value,
+            password: document.getElementById('newpassword').value
+          };
+
+
+          createAccount(user,function(err,user){
+            debugger
+            console.log(err);
+            console.log(user);
+          });
+          event.preventDefault();
         });
 
+        $('#login_new').click(function(event) {
+          var username = document.getElementById('email').value;
+          var password = document.getElementById('password').value;
+          login(username,password,function(err,user){
+            console.log(err);
+            console.log(user);
+          });
+          event.preventDefault();
+        });
 
         </script>
 
