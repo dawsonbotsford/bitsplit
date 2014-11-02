@@ -2,7 +2,7 @@ var fs = require('fs');
 var chain = require('chain-node');
 var bitcoin = require('bitcoinjs-lib');
 
-var configObject = JSON.parse(fs.readFileSync('secret.json'));
+var configObject = JSON.parse(fs.readFileSync('config.json'));
 var transactionFee = 0;
 
 chain.apiKeyId = configObject.api_key;
@@ -88,6 +88,3 @@ function sendTransaction(senderPrivateKey, senderAddress, receiverAddress, amoun
 }
 
 //sendTransaction(configObject.user1.private_key, configObject.user1.public_key, configObject.user2.public_key, 500000, function(err,resp){console.log(resp);});
-
-
-
