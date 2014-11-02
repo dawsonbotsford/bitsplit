@@ -4,12 +4,12 @@ var User = Parse.Object.extend("User");
 function createAccount(userObject, callback)
 {
     var user = new User();
-     
+
     user.set("fullName", userObject.fullName);
     user.set("publicKey", userObject.publicKey);
     user.set("username", userObject.email);
     user.set("password", userObject.password);
-     
+
     user.save(null, {
       success: function(user) {
         callback(null, user);
@@ -23,7 +23,7 @@ function createAccount(userObject, callback)
 function getAccounts(callback)
 {
 	var query = new Parse.Query(User);
-	
+
 	query.find({
 		success: function(items) {
 			var accounts = [];
@@ -56,7 +56,7 @@ function login(username, password, callback)
 
 function getCurrentUser()
 {
-	var currentUser = 
+	var currentUser =
 	{
 		"id": Parse.User.current().id,
 		"fullName": Parse.User.current().attributes.fullName,
@@ -66,4 +66,3 @@ function getCurrentUser()
 
 	return currentUser;
 }
-
