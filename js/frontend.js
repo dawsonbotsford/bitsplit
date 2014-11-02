@@ -20,9 +20,20 @@ function prep_invoice(objects, total){
     //jsonret += "[ pubkey: " + $(this).attr('data-pubkey') +"\npaid: 0],";
     debugger
     var myobj = { receiver_publicKey: $(this).attr('data-pubkey').toString(), sender_publicKey: send_pub.toString(), amount: owedper }; 
-    $.post("../invoice", myobj, function(response) {
-      alert("Response: " + response);
-    }); 
+    // $.post("../invoice", myobj, function(response) {
+    //   alert("Response: " + response);
+    // }); 
+
+  $.ajax({
+  url:"../invoice",
+  type:"POST",
+  data:myobj,
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  success: function(){
+    alert("Success !");
+  }});
+
   //alert("Each person owes" + owedper + " USD");
   });
   //{"message": "Hackathon", "receiver_publicKey": "mhurFvrky29ib6VshzZk6V9tUFeBHr5Sh3", "amount": 50000, "sender_publicKey":"mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P"}

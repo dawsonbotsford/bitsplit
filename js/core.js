@@ -23,7 +23,7 @@ function getCurrentUser()
 
 function calculate(data) {
 	var users = [];
-	for (var i = 0; i < data.length ; i++){
+	for (var i = 0; i < data.length ; i++) {
 		users.push(new U.User(data[i].id, parseInt(data[i].paid)));
 	}
 	var split = new S.Splitter(users);
