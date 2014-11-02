@@ -76,106 +76,127 @@ app.post('/invoice', function(request, response) {
 
 });
 
-// app.post('/paymentreceived', function(request, response) {
+app.post('/paymentreceived', function(request, response) {
 
-// 	//return;
-// 	console.log("POINT 1");
+	console.log("A-0");
 
-// 	try
-// 	{
-
+	try
+	{
 
 
-// 	// get transaction
-// 	var input = request.body.payload.transaction.inputs[0].addresses[0];
+			// get transaction
+			var input = request.body.payload.transaction.inputs[0].addresses[0];
 
-// 	var outputs = [];
-// 	//var outputsToValues = {};
+			console.log("A-1");
 
-// 	for(var i = 0; i < request.body.payload.transaction.outputs.length; i++)
-// 	{
-// 		for(var j = 0; j < request.body.payload.transaction.outputs[i].addresses.length; j++)
-// 		{
-// 			var outputAddress = request.body.payload.transaction.outputs[i].addresses[j];
-// 			if(outputAddress == input)
-// 				continue;
+			var outputs = [];
+			//var outputsToValues = {};
 
-// 			outputs.push(outputAddress);
+			console.log("A-2");
 
-// 			//if(outputsToValues.outputAddress
-// 		}
-// 	}
+			for(var i = 0; i < request.body.payload.transaction.outputs.length; i++)
+			{
 
-// 	var index = outputs.indexOf(input);
+				console.log("A-3");
 
-// 	if(index > -1)
-// 		outputs.splice(index, 1);
+				for(var j = 0; j < request.body.payload.transaction.outputs[i].addresses.length; j++)
+				{
+					var outputAddress = request.body.payload.transaction.outputs[i].addresses[j];
+					if(outputAddress == input)
+						continue;
 
-// 	var output = outputs[0];
+					outputs.push(outputAddress);
 
-// 	// query parse to find the associated invoice
-// 	parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
-  		
-//   		// send you an email notification
-//   		console.log(response);
+					//if(outputsToValues.outputAddress
+				}
+			}
 
-//   		response.results[0].invoice_privateKey
-//   		console.log("A0")
-//   		bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
-//   		console.log("A1")
-//   		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
-// 		  //console.log("successfully removed !");
-// 		  console.log(response);
-// 		  console.log("A2")
-// 		  //console.log(input);
-// 		  //console.log(output);
+			console.log("A-4");
 
-// 		  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
+			var index = outputs.indexOf(input);
 
-// 		  		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
+			if(index > -1)
+				outputs.splice(index, 1);
 
-// 		  			console.log(rp);
-// 		  			console.log(rp2);
-					
-// 				  var data = {key: "hwPvctbIxMYbahS1rQnKfQ",
-//                   message: {
-//                     from_email: "dawsonbotsford@gmail.com",
-//                     to: [
-//                         {
-//                           email: rp.results[0].username,
-//                           name: rp.results[0].fullName,
-//                           type: "to"
-//                         }
-//                       ],
-//                     autotext: 'true',
-//                     subject: rp2.results[0].fullName + ' paid you !',
-//                     html: rp2.results[0].fullName + ' Paid you !'
-//                   }
-//               }
+			var output = outputs[0];
 
-// 		  restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+			console.log("A-5");
 
-// 		  		})
-
-// 		  });
+			// query parse to find the associated invoice
+			parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
+		  		
+		  		try
+		  		{
 
 
-// 		});
+		  		// send you an email notification
+		  		console.log(response);
 
-// 	});
+		  		response.results[0].invoice_privateKey
+		  		console.log("A0")
+		  		bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
+		  		console.log("A1")
+		  		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
+				  //console.log("successfully removed !");
+				  console.log(response);
+				  console.log("A2")
+				  //console.log(input);
+				  //console.log(output);
 
-// 	//request.body.payload.transaction.input_addresses;
-// 	//var outputs = request.body.payload.output_addresses;
+				  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
 
-// 	response.send("{'success':true}");
+				  		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
 
-// 	}
-// 	catch(err)
-// 	{
-// 		response.send("{'success':true}");
-// 	}
+				  			console.log(rp);
+				  			console.log(rp2);
+							
+						  var data = {key: "hwPvctbIxMYbahS1rQnKfQ",
+		                  message: {
+		                    from_email: "dawsonbotsford@gmail.com",
+		                    to: [
+		                        {
+		                          email: rp.results[0].username,
+		                          name: rp.results[0].fullName,
+		                          type: "to"
+		                        }
+		                      ],
+		                    autotext: 'true',
+		                    subject: rp2.results[0].fullName + ' paid you !',
+		                    html: rp2.results[0].fullName + ' Paid you !'
+		                  }
+		              }
 
-// });
+				  restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
+
+				  		})
+
+				  });
+
+
+				});
+
+			});
+
+
+		  		}
+		  		catch(ex)
+		  		{
+
+		  		}
+
+			//request.body.payload.transaction.input_addresses;
+			//var outputs = request.body.payload.output_addresses;
+
+			response.send("{'success':true}");
+
+	}
+	catch(ex)
+	{
+		console.log("~~~~~~~~~PEYROR~~~~: " + ex)
+		response.send("{'success':true}");
+	}
+
+});
 
 app.get('/keys', function(request, response) {
 	response.send(bitcoin.generateKeys());
