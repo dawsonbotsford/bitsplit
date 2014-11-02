@@ -108,7 +108,7 @@ app.post('/paymentreceived', function(request, response) {
 
 	console.log(output);
 	console.log(input);
-	// parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
+	parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
   		
  //  		// send you an email notification
  //  		console.log(response);
@@ -154,7 +154,7 @@ app.post('/paymentreceived', function(request, response) {
 
 	// 	});
 
-	// });
+	});
 
 
 	response.send("{'success':true}");
