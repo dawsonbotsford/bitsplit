@@ -4,7 +4,7 @@ var User = Parse.Object.extend("User");
 function createAccount(userObject, callback)
 {
     var user = new User();
-    alert(userObject.fullName);
+
     user.set("fullName", userObject.fullName);
     user.set("publicKey", userObject.publicKey);
     user.set("username", userObject.email);
@@ -51,7 +51,7 @@ function login(username, password, callback)
 	  error: function(user, error) {
 	    callback(error, user);
 	  }
-
+    event.preventDefault();
 	});
 }
 
