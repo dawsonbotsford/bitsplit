@@ -15,7 +15,6 @@ function prep_invoice(objects, total){
 */
   var numsplitters = $('#friendlist .btn-info').length + 1;
   var owedper = total/numsplitters;
-   var jsonret = "{";
   $('#friendlist .btn-info').each(function() {
     //jsonret += "[ " + $(this).attr('data-pubkey') + "],";
     //jsonret += "[ pubkey: " + $(this).attr('data-pubkey') +"\npaid: 0],";
