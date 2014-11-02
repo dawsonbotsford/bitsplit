@@ -7,16 +7,16 @@
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.1.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../js/frontend.js"></script>
-    <script src="../js/userlib.js"></script> 
+    <script src="../js/userlib.js"></script>
     <script>
       Parse.initialize("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "mwwZOPMNh8vgZFTqfr6koLzbU8DtT5xhydECDiDv");
     </script>
 </head>
 <script>
-  
+
 </script>
 <body>
-Currently logged in as: <div id = "current_user"></div>
+    <div id = "current_user" class="current_user"></div>
     <div class="container">
         <h2>How much?</h2>
         <form class="form-inline">
@@ -24,19 +24,22 @@ Currently logged in as: <div id = "current_user"></div>
           getAccounts(function(err, response){
              var obj = response;
             $(document).ready(function() {
-              alert(getCurrentUser()); 
+              //alert(getCurrentUser());
               //$.("#current_user").append(getCurrentUser());
+              $('#current_user').append("Currently logged in as: " + getCurrentUser().fullName);
               $.each(obj, function(i, item){
-                $("#friendlist").append("<input padding: type=\"button\" class=\"btn btn-default\" data-pubkey = " + item.publicKey + " value=" + item.fullName + "><br>");
+                if(obj.fullName != getCurrentUser().fullName){
+                  $("#friendlist").append("<input padding: type=\"button\" class=\"btn btn-default\" data-pubkey = " + item.publicKey + " value=" + item.fullName + "><br>");
+              }
               });
                 $("#friendlist .btn").click(function() {
                   $(this).toggleClass("btn-default");
                   $(this).toggleClass("btn-info");
                 });
-                
+
                 $("#loginbutton").click(function() {
                   build_owe_json(obj);
-                }); 
+                });
             });
           });
           </script>

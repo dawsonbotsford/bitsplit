@@ -29,3 +29,9 @@ body {
 .btn{
   width: 250px;
 }
+
+.current_user{
+    position: absolute;
+    right: 30px;
+    top: 10px;
+}

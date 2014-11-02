@@ -5,34 +5,66 @@
     <link href="../css/custom.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:700,400">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.1.min.js"></script>
     <script src="../js/frontend.js"></script>
-    
+    <script src="../js/userlib.js"></script>
+    <script>
+      Parse.initialize("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "mwwZOPMNh8vgZFTqfr6koLzbU8DtT5xhydECDiDv");
+    </script>
 </head>
 <script>
-  
+
 </script>
 <body>
+    <div id="current_user" class="current_user"></div>
     <div class="container">
         <h2>Who owes you?</h2>
         <form class="form-inline">
           <script>
-          var obj = [{
-            name: "dawson",
-            email: "daws@me",
-            pubkey: "dawskey1" 
-          },{
-            name: "peyman",
-            email: "peyman@me",
-            pubkey: "peymankey" 
-          },{
-            name: "brian",
-            email: "brian@me",
-            pubkey: "briankey" 
-          },{
-            name: "Grant",
-            email: "grant@me",
-            pubkey: "grantkey" 
-          }];
+          $(document).ready(function() {
+            //alert(getCurrentUser());
+            //$.("#current_user").append(getCurrentUser());
+            $('#current_user').append("Currently logged in as: " + getCurrentUser().fullName);
+          });
+          getAccounts(function(err, response){
+             var obj = response;
+            $(document).ready(function() {
+              //alert(getCurrentUser());
+              //$.("#current_user").append(getCurrentUser());
+              $('#current_user').append("Currently logged in as: " + getCurrentUser().fullName);
+              $.each(obj, function(i, item){
+                if(obj.fullName != getCurrentUser().fullName){
+                  $("#friendlist").append("<input padding: type=\"button\" class=\"btn btn-default\" data-pubkey = " + item.publicKey + " value=" + item.fullName + "><br>");
+              }
+              });
+                $("#friendlist .btn").click(function() {
+                  $(this).toggleClass("btn-default");
+                  $(this).toggleClass("btn-info");
+                });
+
+                $("#loginbutton").click(function() {
+                  build_owe_json(obj);
+                });
+            });
+          });
+
+          // var obj = [{
+          //   name: "dawson",
+          //   email: "daws@me",
+          //   pubkey: "dawskey1"
+          // },{
+          //   name: "peyman",
+          //   email: "peyman@me",
+          //   pubkey: "peymankey"
+          // },{
+          //   name: "brian",
+          //   email: "brian@me",
+          //   pubkey: "briankey"
+          // },{
+          //   name: "Grant",
+          //   email: "grant@me",
+          //   pubkey: "grantkey"
+          // }];
           $(document).ready(function() {
               $.each(obj, function(i, item){
                 $("#friendlist").append("<input padding: type=\"button\" class=\"btn btn-default\" data-pubkey = " + item.pubkey + " value=" + item.name + "--0.004bTC><br>");
@@ -65,7 +97,7 @@
                }).done(function(response) {
                  console.log(response); // if you're into that sorta thing
                });
-            }); 
+            });
                });
 
           </script>
