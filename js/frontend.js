@@ -20,6 +20,8 @@ function prep_invoice(objects, total){
     //jsonret += "[ pubkey: " + $(this).attr('data-pubkey') +"\npaid: 0],";
     debugger
     var myobj = { receiver_publicKey: $(this).attr('data-pubkey').toString(), sender_publicKey: send_pub.toString(), amount: owedper }; 
+
+
     // $.post("../invoice", myobj, function(response) {
     //   alert("Response: " + response);
     // }); 
@@ -27,7 +29,7 @@ function prep_invoice(objects, total){
   $.ajax({
   url:"../invoice",
   type:"POST",
-  data:myobj,
+  data:JSON.stringify(myobj),
   contentType:"application/json; charset=utf-8",
   dataType:"json",
   success: function(){
