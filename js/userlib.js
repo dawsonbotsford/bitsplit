@@ -58,11 +58,11 @@ function getCurrentUser()
 {
   var currentUser = {
     "id": 1,
-    "fullName": "Brian Newsom",
+    "fullName": "Brian",
     "email" : "Brian.Newsom@Colorado.edu",
     "publicKey" : "FILLMEIN"
   }
-  
+
 	// var currentUser =
 	// {
 	// 	"id": Parse.User.current().id,

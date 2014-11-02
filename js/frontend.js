@@ -17,5 +17,5 @@ function build_owe_json(objects){
     jsonret += "[ pubkey: " + $(this).attr('data-pubkey') +"\npaid: 0],";
   });
     jsonret = jsonret.substring(0, jsonret.length - 1) + "}";
-  alert(jsonret);
+
 }
