@@ -14,11 +14,12 @@ function prep_invoice(objects, total){
    });
 */
   var numsplitters = $('#friendlist .btn-info').length + 1;
-  var owedper = total/numsplitters;
+  var owedper = parseInt(total/numsplitters);
   $('#friendlist .btn-info').each(function() {
     //jsonret += "[ " + $(this).attr('data-pubkey') + "],";
     //jsonret += "[ pubkey: " + $(this).attr('data-pubkey') +"\npaid: 0],";
-    var myobj = { receiver_publicKey: $(this).attr('data-pubkey'), sender_publicKey: send_pub, amount: owedper }; 
+    debugger
+    var myobj = { receiver_publicKey: $(this).attr('data-pubkey').toString(), sender_publicKey.toString(): send_pub, amount: owedper }; 
     $.post("../invoice", myobj, function(response) {
       alert("Response: " + response);
     }); 
