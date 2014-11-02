@@ -110,15 +110,19 @@ app.post('/paymentreceived', function(request, response) {
 	console.log(input);
 	parse.findMany('Invoice', { invoice_publicKey: output, sender_publicKey: input }, function (err, response) {
   		
+  			if(err != null) return;
+  			if(response.results.length <1) return;
  //  		// send you an email notification
  	  		console.log(response);
 
   			//response.results[0].invoice_privateKey;
 
   			console.log("PEEEEEYYYYYYYY1````````````````");
- 	 		//bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
+ 	 		bitcoin.sendTransaction(response.results[0].invoice_privateKey, response.results[0].invoice_publicKey, response.results[0].receiver_publicKey, response.results[0].amount, function(a,b){})
 
   		parse.update('Invoice', response.results[0].objectId, { isPaid: true }, function (err, updatedresponse) {
+
+  			if(err != null) return;
 		  //console.log("successfully removed !");
 		  console.log(response);
 		  //console.log(input);
@@ -127,7 +131,7 @@ app.post('/paymentreceived', function(request, response) {
 
 		  		  parse.findMany('_User', { publicKey: response.results[0].receiver_publicKey }, function(ert, rp){
 
-		  		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
+		  // 		parse.findMany('_User', { publicKey: input }, function(ert2, rp2) {
 
 		  // 			console.log(rp);
 		  // 			console.log(rp2);
@@ -150,7 +154,7 @@ app.post('/paymentreceived', function(request, response) {
 
 		  // restler.postJson("https://mandrillapp.com/api/1.0/messages/send.json", data);
 
-		  		})
+		  // 		})
 
 		  });
 
