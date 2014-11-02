@@ -6,9 +6,9 @@ var bitcoin = require('./bitcoin.js');
 var Parse = require('node-parse-api').Parse;
 var restler = require('restler');
 
-bitcoin.sendTransaction("L4iBrgiXkWTUfnmg9vWRsK9N3ZooQ3AmWadwiBkrAjNWUFEzPtmS", "mhurFvrky29ib6VshzZk6V9tUFeBHr5Sh3", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", 70000, function(err, response){
-	console.log(response);
-});
+// bitcoin.sendTransaction("L4iBrgiXkWTUfnmg9vWRsK9N3ZooQ3AmWadwiBkrAjNWUFEzPtmS", "mhurFvrky29ib6VshzZk6V9tUFeBHr5Sh3", "mjXX5eKz72g1rKzw4fEDZgVeWLpADeS42P", 70000, function(err, response){
+// 	console.log(response);
+// });
 
 var parse = new Parse("is3SIL9nDLCqIhhOp3S9v1f8K7PiXs9mTjRwDkPs", "av6qlnU6r8pl2Wt78wSVmmFoxiEvZwnGMNm97S0D");
 
